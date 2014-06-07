@@ -7,7 +7,6 @@
 //
 
 #import "STPViewController.h"
-#import "STPLayoutConstraintBuilder.h"
 
 @interface STPViewController () {
     BOOL isIOS6, isIpad;
@@ -49,6 +48,9 @@
     
     [self willRotateToInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]
                                   duration:[[UIApplication sharedApplication] statusBarOrientationAnimationDuration]];
+    
+    //loading home page first
+    [self onHomeTbBtClick];
     
 }
 
@@ -147,7 +149,7 @@
                                  options:NSLayoutFormatDirectionLeftToRight
                                  metrics:nil views:viewDictionary]];
     [[self view] addConstraints:[NSLayoutConstraint
-                           constraintsWithVisualFormat:@"V:|-0-[toolbar]-[webView]-|"
+                           constraintsWithVisualFormat:@"V:|-20-[toolbar]-[webView]-|"
                            options:NSLayoutFormatDirectionLeftToRight
                            metrics:nil views:viewDictionary]];
     
@@ -214,14 +216,16 @@
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    UIAlertView * errorAlert = [[UIAlertView alloc]
-                                initWithTitle:@"erreur"
-                                message:[NSString stringWithFormat:@"%@", [error localizedDescription]]
-                                delegate:nil
-                                cancelButtonTitle:@"OK"
-                                otherButtonTitles:nil];
-    [errorAlert autorelease];
-    [errorAlert show];
+    if([error code] != -999) {
+        UIAlertView * errorAlert = [[UIAlertView alloc]
+                                    initWithTitle:@"erreur"
+                                    message:[NSString stringWithFormat:@"%@", [error localizedDescription]]
+                                    delegate:nil
+                                    cancelButtonTitle:@"OK"
+                                    otherButtonTitles:nil];
+        [errorAlert autorelease];
+        [errorAlert show];
+    }
 }
 
 /* ---- END web view delegate ---- */
@@ -254,13 +258,22 @@
     }
     
     //bookmark action sheet
-    bookmarkActionSheet = [[UIActionSheet alloc]
-                           initWithTitle:@"Favoris"
-                           delegate:self
-                           cancelButtonTitle:@"Annuler"
-                           destructiveButtonTitle:@"Page d'accueil"
-                           otherButtonTitles:nil];
+    bookmarkActionSheet = [[UIActionSheet alloc] init];
+    [bookmarkActionSheet setDelegate:self];
+    [bookmarkActionSheet setTitle:@"Favoris"];
+    [bookmarkActionSheet addButtonWithTitle:@"Annuler"];
+    [bookmarkActionSheet setCancelButtonIndex:0];
+    [bookmarkActionSheet addButtonWithTitle:@"Page d'accueil"];
+    [bookmarkActionSheet setDestructiveButtonIndex:1];
+    [bookmarks enumerateKeysAndObjectsUsingBlock:^(id key, id obj,BOOL *stop){
+        [bookmarkActionSheet addButtonWithTitle:key];
+    }];
     
+    if(isIpad) {
+        [bookmarkActionSheet showFromBarButtonItem:bookmarkTbBt animated:YES];
+    } else {
+        [bookmarkActionSheet showFromToolbar:toolbar];
+    }
 }
 
 -(void)onAddTbBtClick {
@@ -301,12 +314,23 @@
     if(actionSheet == addActionSheet) {
         if(buttonIndex == 0){
             //modify home page
-            homeStringUrl = [[[webView request] URL] absoluteString];
+            homeStringUrl = [[[[webView request] URL] absoluteString] copy];
         }
         if(buttonIndex == 1){
             //add to bookmarks
             [addBookmarkAlert setMessage:[[[webView request] URL] absoluteString]];
             [addBookmarkAlert show];
+        }
+    }
+    
+    if(actionSheet == bookmarkActionSheet){
+        if(buttonIndex == 1){
+            [self onHomeTbBtClick];
+        } else if (buttonIndex > 1) {
+            NSURL * bookUrl = [NSURL URLWithString:[bookmarks
+                                                   objectForKey:[actionSheet
+                                                                 buttonTitleAtIndex:buttonIndex]]];
+            [webView loadRequest:[NSURLRequest requestWithURL:bookUrl]];
         }
     }
 

@@ -24,8 +24,6 @@
 		CE82F42D19433C1F0055D119 /* fond-1024x1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE82F42419433C1F0055D119 /* fond-1024x1024.jpg */; };
 		CE82F42E19433C1F0055D119 /* fond-1136x1136.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE82F42519433C1F0055D119 /* fond-1136x1136.jpg */; };
 		CE82F42F19433C1F0055D119 /* fond-2048x2048.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE82F42619433C1F0055D119 /* fond-2048x2048.jpg */; };
-		CE82F43019433C1F0055D119 /* STPLayoutConstraintBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE82F42819433C1F0055D119 /* STPLayoutConstraintBuilder.m */; };
-		CE82F43119433C1F0055D119 /* STPView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE82F42A19433C1F0055D119 /* STPView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CE82F43219433C1F0055D119 /* STPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE82F42C19433C1F0055D119 /* STPViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
@@ -61,10 +59,6 @@
 		CE82F42419433C1F0055D119 /* fond-1024x1024.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fond-1024x1024.jpg"; sourceTree = "<group>"; };
 		CE82F42519433C1F0055D119 /* fond-1136x1136.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fond-1136x1136.jpg"; sourceTree = "<group>"; };
 		CE82F42619433C1F0055D119 /* fond-2048x2048.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fond-2048x2048.jpg"; sourceTree = "<group>"; };
-		CE82F42719433C1F0055D119 /* STPLayoutConstraintBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPLayoutConstraintBuilder.h; sourceTree = "<group>"; };
-		CE82F42819433C1F0055D119 /* STPLayoutConstraintBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPLayoutConstraintBuilder.m; sourceTree = "<group>"; };
-		CE82F42919433C1F0055D119 /* STPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPView.h; sourceTree = "<group>"; };
-		CE82F42A19433C1F0055D119 /* STPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPView.m; sourceTree = "<group>"; };
 		CE82F42B19433C1F0055D119 /* STPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPViewController.h; sourceTree = "<group>"; };
 		CE82F42C19433C1F0055D119 /* STPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,10 +123,6 @@
 				CE82F3FB194339900055D119 /* STPAppDelegate.h */,
 				CE82F3FC194339900055D119 /* STPAppDelegate.m */,
 				CE82F43319433C2D0055D119 /* bg */,
-				CE82F42719433C1F0055D119 /* STPLayoutConstraintBuilder.h */,
-				CE82F42819433C1F0055D119 /* STPLayoutConstraintBuilder.m */,
-				CE82F42919433C1F0055D119 /* STPView.h */,
-				CE82F42A19433C1F0055D119 /* STPView.m */,
 				CE82F42B19433C1F0055D119 /* STPViewController.h */,
 				CE82F42C19433C1F0055D119 /* STPViewController.m */,
 				CE82F3FE194339900055D119 /* Main_iPhone.storyboard */,
@@ -284,10 +274,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE82F43019433C1F0055D119 /* STPLayoutConstraintBuilder.m in Sources */,
 				CE82F43219433C1F0055D119 /* STPViewController.m in Sources */,
 				CE82F3FD194339900055D119 /* STPAppDelegate.m in Sources */,
-				CE82F43119433C1F0055D119 /* STPView.m in Sources */,
 				CE82F3F9194339900055D119 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,6 +493,7 @@
 				CE82F420194339910055D119 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE82F421194339910055D119 /* Build configuration list for PBXNativeTarget "MiniNAvTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +502,7 @@
 				CE82F423194339910055D119 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
