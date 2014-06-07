@@ -148,10 +148,17 @@
                                  constraintsWithVisualFormat:@"H:|-[webView]-|"
                                  options:NSLayoutFormatDirectionLeftToRight
                                  metrics:nil views:viewDictionary]];
-    [[self view] addConstraints:[NSLayoutConstraint
-                           constraintsWithVisualFormat:@"V:|-20-[toolbar]-[webView]-|"
-                           options:NSLayoutFormatDirectionLeftToRight
-                           metrics:nil views:viewDictionary]];
+    if(isIOS6){
+        [[self view] addConstraints:[NSLayoutConstraint
+                                     constraintsWithVisualFormat:@"V:|-0-[toolbar]-[webView]-|"
+                                     options:NSLayoutFormatDirectionLeftToRight
+                                     metrics:nil views:viewDictionary]];
+    } else {
+        [[self view] addConstraints:[NSLayoutConstraint
+                                     constraintsWithVisualFormat:@"V:|-20-[toolbar]-[webView]-|"
+                                     options:NSLayoutFormatDirectionLeftToRight
+                                     metrics:nil views:viewDictionary]];
+    }
     
     //url alert
     urlTypeAlert = [[UIAlertView alloc]
@@ -307,6 +314,7 @@
 }
 
 /* ---- END alert view delegate ---- */
+
 
 /* ---- actionsheet delegate ---- */
 
